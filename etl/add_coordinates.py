@@ -1,4 +1,3 @@
-# etl/add_coordinates.py
 import pandas as pd, os
 from geopy.geocoders import Nominatim
 import time
@@ -25,7 +24,7 @@ def add_coords(df, location_col):
         except:
             lats.append(None)
             lons.append(None)
-        time.sleep(1)  # avoid API rate limit
+        time.sleep(1)
     df["latitude"] = lats
     df["longitude"] = lons
     return df
@@ -36,7 +35,7 @@ if os.path.exists(news_path):
     if "latitude" not in df.columns and "location" in df.columns:
         df = add_coords(df, "location")
         df.to_csv(news_path, index=False)
-        print("✅ Added coordinates to NEWS file.")
+        print("Added coordinates to NEWS file.")
 
 # YouTube dataset
 if os.path.exists(yt_path):
@@ -44,4 +43,4 @@ if os.path.exists(yt_path):
     if "latitude" not in dfy.columns and "region" in dfy.columns:
         dfy = add_coords(dfy, "region")
         dfy.to_csv(yt_path, index=False)
-        print("✅ Added coordinates to YouTube file.")
+        print("Added coordinates to YouTube file.")

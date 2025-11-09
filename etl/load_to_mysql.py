@@ -1,21 +1,21 @@
-# etl/load_to_mysql.py
+
 import mysql.connector
 import pandas as pd
 import os
 import sys
 
-# ✅ MySQL connection details
+# MySQL connection details
 MYSQL_HOST = "localhost"
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "Samba@1925"   # <-- your MySQL password here
 MYSQL_DB = "MEDIA_CONTENT_ANALYTICS"
 
-# ✅ Folder paths (processed data)
+# Folder paths (processed data)
 base_path = r"C:\Users\samba\OneDrive\Desktop\Media_Content_Analytics_Platform\data\processed"
 news_file = os.path.join(base_path, "NEWS_yahoo_11cols.csv")
 youtube_file = os.path.join(base_path, "dim_video.csv")
 
-# ✅ Connect to MySQL
+#  Connect to MySQL
 try:
     conn = mysql.connector.connect(
         host=MYSQL_HOST,
@@ -24,12 +24,12 @@ try:
         database=MYSQL_DB
     )
     cursor = conn.cursor()
-    print("✅ Connected to MySQL database:", MYSQL_DB)
+    print("Connected to MySQL database:", MYSQL_DB)
 except Exception as e:
-    print("❌ Error connecting to MySQL:", e)
+    print("Error connecting to MySQL:", e)
     sys.exit(1)
 
-# ✅ 1. Create Yahoo News table
+# Create Yahoo News table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS yahoo_news_data (
     id INT PRIMARY KEY,
@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS yahoo_news_data (
     text_length_category VARCHAR(50)
 )
 """)
-print("✅ Table yahoo_news_data ready (LONGTEXT used for news_text).")
+print("Table yahoo_news_data ready (LONGTEXT used for news_text).")
 
-# ✅ 2. Create YouTube Data table
+# Create YouTube Data table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS youtube_data (
     video_id VARCHAR(100) PRIMARY KEY,
@@ -63,20 +63,20 @@ CREATE TABLE IF NOT EXISTS youtube_data (
     region VARCHAR(50)
 )
 """)
-print("✅ Table youtube_data ready.")
+print("Table youtube_data ready.")
 
-# ✅ 3. Load data from CSV files
+# Load data from CSV files
 try:
-    print("📥 Loading Yahoo news CSV...")
+    print("Loading Yahoo news CSV...")
     news_df = pd.read_csv(news_file)
-    print("📥 Loading YouTube CSV...")
+    print("Loading YouTube CSV...")
     youtube_df = pd.read_csv(youtube_file)
 except Exception as e:
-    print("❌ Error reading CSV files:", e)
+    print("Error reading CSV files:", e)
     sys.exit(1)
 
-# ✅ 4. Insert Yahoo news data
-print("📤 Inserting Yahoo News records...")
+# Insert Yahoo news data
+print("Inserting Yahoo News records...")
 for _, row in news_df.iterrows():
     sql = """
     INSERT INTO yahoo_news_data (
@@ -90,10 +90,10 @@ for _, row in news_df.iterrows():
     except mysql.connector.errors.IntegrityError:
         pass  # skip duplicates
     except Exception as e:
-        print("⚠️ Error inserting news row:", e)
+        print("Error inserting news row:", e)
 
-# ✅ 5. Insert YouTube data (auto-adjust to available columns)
-print("📤 Inserting YouTube records...")
+# Insert YouTube data (auto-adjust to available columns)
+print("Inserting YouTube records...")
 youtube_df.columns = [c.lower() for c in youtube_df.columns]  # normalize column names
 yt_cols = list(youtube_df.columns)
 insert_cols = ",".join(yt_cols)
@@ -107,12 +107,12 @@ for _, row in youtube_df.iterrows():
     except mysql.connector.errors.IntegrityError:
         pass  # skip duplicates
     except Exception as e:
-        print("⚠️ Error inserting YouTube row:", e)
+        print("Error inserting YouTube row:", e)
 
-# ✅ 6. Commit and close connection
+# Commit and close connection
 conn.commit()
 cursor.close()
 conn.close()
 
-print("\n✅ All records inserted successfully into MEDIA_CONTENT_ANALYTICS!")
+print("\n All records inserted successfully into MEDIA_CONTENT_ANALYTICS!")
 sys.stdout.flush()
