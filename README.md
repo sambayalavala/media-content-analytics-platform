@@ -1,165 +1,115 @@
-Media Content Analytics Platform
+#  Media Content Analytics Platform (MCAP)
 
-Overview
+##  Overview
 
-The Media Content Analytics Platform (MCAP) is a complete end-to-end data analytics solution that integrates YouTube and News data for generating insights.
-It helps in understanding media trends, audience engagement, and sentiment analysis through an interactive dashboard.
-This project demonstrates how to extract, clean, transform, and visualise data using Python, Streamlit, MySQL, and Google BigQuery.
+The **Media Content Analytics Platform (MCAP)** is an end-to-end data analytics solution that integrates **YouTube** and **News** datasets to generate actionable insights.  
+It helps users understand **media trends**, **audience engagement**, and **sentiment analysis** through an interactive dashboard.  
 
-Tech Stack
+This project demonstrates how to **extract**, **clean**, **transform**, and **visualize** large-scale data using **Python**, **Streamlit**, **MySQL**, and **Google BigQuery**.
 
-Programming Language: Python 3.13
+---
 
-Dashboard Framework: Streamlit
+##  Tech Stack
 
-Visualization Libraries: Plotly, PyDeck
+| Category | Technologies Used |
+|-----------|-------------------|
+| **Programming Language** | Python 3.13 |
+| **Dashboard Framework** | Streamlit |
+| **Visualization Libraries** | Plotly, PyDeck |
+| **Data Processing** | Pandas, NumPy |
+| **Databases** | MySQL, Google BigQuery |
+| **Cloud Platform** | Google Cloud Platform (GCP) |
+| **APIs Used** | YouTube Data API |
+| **Tools** | PyCharm, Jupyter Notebook |
 
-Data Processing: Pandas, NumPy
+---
 
-Databases: MySQL, Google BigQuery
+---
 
-Cloud Platform: Google Cloud Platform (GCP)
+##  Features
 
-APIs Used: YouTube Data API, Kaggle API
+###  YouTube Analytics
+- Fetch and analyze trending videos.  
+- Display top 10 videos by view count.  
+- Filter by region (Global, India, US, UK, etc.).  
+- Visualize views, likes, and comments.
 
-Tools: PyCharm, Jupyter Notebook
+###  News Analytics
+- Analyze news sentiment (Positive, Neutral, Negative).  
+- Show category-wise article count.  
+- Display top trending news articles.  
+- Compare YouTube and News data side by side.
 
-Project Structure
+###  Dashboard
+- Interactive charts and tables.  
+- Combined KPIs for YouTube and News datasets.  
+- Modern, user-friendly interface with filters.  
 
-Media_Content_Analytics_Platform/
-│
-├── config/
-│   ├── kaggle.json
-│   ├── mcap-project-477416-81b2xxxx.json
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│       ├── NEWS_yahoo_11cols.csv
-│       └── dim_video.csv
-│
-├── etl/
-│   ├── fetch_youtube_data.py
-│   ├── transform_clean_data.py
-│   ├── load_to_mysql.py
-│   └── upload_to_bigquery.py
-│
-├── streamlit_app/
-│   └── Dashboards/
-│       └── app.py
-│
-├── notebooks/
-│   └── data_analysis.ipynb
-│
-├── .gitignore
-├── requirements.txt
-└── README.md
+---
 
+##  Setup Instructions
 
-Features
-YouTube Analytics
-
-Fetch and analyze trending videos.
-
-Display top 10 videos by view count.
-
-Filter by region (Global, India, US, UK, etc.).
-
-Visualize views, likes, and comments.
-
-News Analytics
-
-Analyze news sentiment (positive, neutral, negative).
-
-Show category-wise article count.
-
-Display trending news articles.
-
-Compare YouTube and News data together.
-
-Dashboard
-
-Interactive charts and tables.
-
-Combined metrics of YouTube and News data.
-
-Easy-to-use interface with filters.
-
-Setup Instructions
-Step 1: Clone the Repository
+###  Step 1: Clone the Repository
+```bash
 git clone https://github.com/sambayalavala/media-content-analytics-platform.git
 cd media-content-analytics-platform
 
-Step 2: Install Dependencies
-pip install -r requirements.txt
-
-Step 3: Configure Credentials
-
-Create a folder named config/ and place your credentials inside:
-
-kaggle.json → Kaggle API key
-
-mcap-project-477416-81b2xxxx.json → Google BigQuery credentials
-
-Ensure .gitignore contains:
-
-config/*.json
-
-Step 4: Run the Dashboard
+Dashboard
 streamlit run streamlit_app/Dashboards/app.py
 
 
-Open the browser at:
-http://localhost:8501
+Then open in your browser:
+ http://localhost:8501
 
-Dashboard Insights
-YouTube Section
+ Dashboard Insights
+ YouTube Section
 
 Displays top trending videos with region filters.
 
-Shows bar charts for views and engagement.
+Bar charts for views, likes, and engagement.
 
-Lists top 10 videos by performance.
+Lists Top 10 videos by performance.
 
-News Section
+ News Section
 
-Displays sentiment pie chart.
+Pie chart for sentiment analysis.
 
-Shows category-wise distribution.
+Bar chart for category distribution.
 
-Lists top trending news articles.
+Lists Top trending news articles dynamically.
 
-Combined Metrics
+ Combined Metrics
 
 Total number of YouTube videos.
 
-Total views and total news articles.
+Total view counts and news articles.
 
-Data preview combining both datasets.
+Data preview combining both sources.
 
-Security
+ Security
 
-Sensitive configuration files are excluded from version control using .gitignore:
+Sensitive files are excluded from version control using .gitignore.
 
+# Sensitive data and cache
 config/*.json
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
 
-Future Improvements
+ Future Enhancements
 
-Add automatic scheduling for data updates.
+Add automatic scheduling for real-time data updates.
 
-Integrate YouTube API v3 for real-time tracking.
+Integrate YouTube Data API v3 for live tracking.
 
 Add Plotly Mapbox for location-based visualization.
 
-Deploy dashboard on Google Cloud Run.
+Deploy the dashboard on Google Cloud Run or Streamlit Cloud.
 
-Author
+ Author
 
 Sambasivarao Yalavala
-B.Tech – CSE (AI), Dr. MGR Educational and Research Institute
-Data Engineering & Cloud Enthusiast
-GitHub: https://github.com/sambayalavala
+ B.Tech – CSE (AI), Dr. MGR Educational and Research Institute
+ Data Engineering & Cloud Enthusiast
+ GitHub: https://github.com/sambayalavala
