@@ -4,13 +4,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ---------------- SAFETY CHECK ----------------
+# SAFETY CHECK
 if __name__ == "__main__" and ("streamlit" not in " ".join(sys.argv).lower()):
     print("\n⚠️  Run this file using:\n")
     print("   streamlit run streamlit_app/Dashboards/app.py\n")
     sys.exit(0)
 
-# ---------------- PAGE CONFIG ----------------
+# PAGE CONFIG
 st.set_page_config(
     page_title="Media Content Analytics Platform",
     page_icon="🌍",
@@ -20,13 +20,13 @@ st.set_page_config(
 st.title("🌍 Media Content Analytics Platform")
 st.markdown("Real-time analysis of **YouTube** and **News** data — compare regions, categories, and trends interactively.")
 
-# ---------------- PATHS ----------------
+# PATHS
 ROOT = r"C:\Users\samba\OneDrive\Desktop\Media_Content_Analytics_Platform"
 PROC_DIR = os.path.join(ROOT, "data", "processed")
 NEWS_CSV = os.path.join(PROC_DIR, "NEWS_yahoo_11cols.csv")
 YT_CSV = os.path.join(PROC_DIR, "dim_video.csv")
 
-# ---------------- LOAD DATA ----------------
+# LOAD DATA
 @st.cache_data(ttl=300)
 def load_data(news_path, yt_path):
     news_df = pd.read_csv(news_path) if os.path.exists(news_path) else pd.DataFrame()
@@ -39,12 +39,12 @@ news_df, yt_df = load_data(NEWS_CSV, YT_CSV)
 news_df.columns = [c.lower() for c in news_df.columns]
 yt_df.columns = [c.lower() for c in yt_df.columns]
 
-# ---------------- DEFAULT REGIONS ----------------
+# DEFAULT REGIONS
 default_regions = ["Global", "India", "USA", "UK", "Germany", "Japan", "Australia"]
 if "region" not in yt_df.columns or yt_df["region"].isna().all():
     yt_df["region"] = pd.Series(default_regions * (len(yt_df) // len(default_regions) + 1))[:len(yt_df)]
 
-# ---------------- SIDEBAR FILTERS ----------------
+# SIDEBAR FILTERS
 st.sidebar.header("🔍 Filters")
 category_list = sorted(news_df["category"].dropna().unique()) if "category" in news_df.columns else []
 region_list = sorted(yt_df["region"].dropna().unique())
@@ -58,13 +58,13 @@ if selected_category:
 if selected_region:
     yt_df = yt_df[yt_df["region"].isin(selected_region)]
 
-# ---------------- REFRESH BUTTON ----------------
+# REFRESH BUTTON
 st.sidebar.markdown("---")
 if st.sidebar.button("🔄 Refresh Dashboard"):
     st.cache_data.clear()
     st.rerun()
 
-# ---------------- KPI SECTION ----------------
+# KPI SECTION
 st.markdown("### 📊 Key Metrics Overview")
 col1, col2, col3 = st.columns(3)
 col1.metric("Total YouTube Videos", f"{len(yt_df):,}")
@@ -74,7 +74,7 @@ if "views" in yt_df.columns:
 else:
     col3.metric("Total YouTube Views", "N/A")
 
-# ---------------- YOUTUBE ANALYTICS ----------------
+# YOUTUBE ANALYTICS
 st.markdown("### 🎬 YouTube — Top Trending Videos")
 if not yt_df.empty and "views" in yt_df.columns:
     yt_df["views"] = pd.to_numeric(yt_df["views"], errors="coerce").fillna(0)
@@ -106,7 +106,7 @@ if not yt_df.empty and "views" in yt_df.columns:
 else:
     st.info("No YouTube data available or missing 'views' column.")
 
-# ---------------- NEWS INSIGHTS ----------------
+# NEWS INSIGHTS
 st.markdown("### 📰 News — Category & Sentiment Insights")
 if not news_df.empty:
     col_a, col_b = st.columns(2)
@@ -135,7 +135,7 @@ if not news_df.empty:
             )
             st.plotly_chart(fig4, width="stretch")
 
-    # ---------------- TRENDING NEWS ARTICLES ----------------
+    # TRENDING NEWS ARTICLES
     st.markdown("### 🔥 Top Trending News Articles")
     if not news_df.empty:
         # Pick a text column (title, headline, or first available string column)
