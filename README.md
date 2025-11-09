@@ -25,6 +25,7 @@ APIs Used: YouTube Data API, Kaggle API
 Tools: PyCharm, Jupyter Notebook
 
 Project Structure
+
 Media_Content_Analytics_Platform/
 │
 ├── config/
@@ -53,6 +54,7 @@ Media_Content_Analytics_Platform/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+
 
 Features
 YouTube Analytics
