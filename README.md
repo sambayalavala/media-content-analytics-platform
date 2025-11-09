@@ -104,7 +104,7 @@ Data preview combining both sources.
 
 Sensitive files are excluded from version control using .gitignore.
 
-# Sensitive data and cache
+### Sensitive data and cache
 config/*.json
 __pycache__/
 .ipynb_checkpoints/
@@ -123,7 +123,7 @@ Deploy the dashboard on Google Cloud Run or Streamlit Cloud.
 
 ### Author
 
-## Sambasivarao Yalavala
+### Sambasivarao Yalavala
  B.Tech – CSE (AI), Dr. MGR Educational and Research Institute
  Data Engineering & Cloud Enthusiast
  GitHub: https://github.com/sambayalavala
