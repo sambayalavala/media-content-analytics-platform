@@ -50,19 +50,33 @@ This project demonstrates how to **extract**, **clean**, **transform**, and **vi
 ##  Setup Instructions
 
 ###  Step 1: Clone the Repository
-```bash
+
 git clone https://github.com/sambayalavala/media-content-analytics-platform.git
 cd media-content-analytics-platform
 
-Dashboard
+###  Step 2: Install Dependencies
+pip install -r requirements.txt
+
+###  Step 3: Configure Credentials
+1.Create a folder named config/ in the project root.
+
+2.Add your API keys or configuration files securely (DO NOT push to GitHub).
+
+Example:
+
+config/youtube_api_key.json
+
+config/news_api_key.json
+3.Ensure .gitignore contains:
+config/*.json
+
+###  Step 4: Run the Dashboard
 streamlit run streamlit_app/Dashboards/app.py
-
-
 Then open in your browser:
- http://localhost:8501
+👉 http://localhost:8501
 
- Dashboard Insights
- YouTube Section
+###   Dashboard Insights
+ ##   YouTube Section
 
 Displays top trending videos with region filters.
 
@@ -70,7 +84,7 @@ Bar charts for views, likes, and engagement.
 
 Lists Top 10 videos by performance.
 
- News Section
+### News Section
 
 Pie chart for sentiment analysis.
 
@@ -78,7 +92,7 @@ Bar chart for category distribution.
 
 Lists Top trending news articles dynamically.
 
- Combined Metrics
+### Combined Metrics
 
 Total number of YouTube videos.
 
@@ -86,7 +100,7 @@ Total view counts and news articles.
 
 Data preview combining both sources.
 
- Security
+### Security
 
 Sensitive files are excluded from version control using .gitignore.
 
@@ -97,7 +111,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
- Future Enhancements
+### Future Enhancements
 
 Add automatic scheduling for real-time data updates.
 
@@ -107,9 +121,9 @@ Add Plotly Mapbox for location-based visualization.
 
 Deploy the dashboard on Google Cloud Run or Streamlit Cloud.
 
- Author
+### Author
 
-Sambasivarao Yalavala
+## Sambasivarao Yalavala
  B.Tech – CSE (AI), Dr. MGR Educational and Research Institute
  Data Engineering & Cloud Enthusiast
  GitHub: https://github.com/sambayalavala
