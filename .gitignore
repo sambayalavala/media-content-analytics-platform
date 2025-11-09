@@ -1,0 +1,17 @@
+# Ignore Python cache & environment
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Ignore config and credential files
+config/*.json
+config/gcp_credentials.json
+config/kaggle.json
+
+# Ignore notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
