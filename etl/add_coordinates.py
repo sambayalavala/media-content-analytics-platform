@@ -29,8 +29,7 @@ def add_coords(df, location_col):
     df["longitude"] = lons
     return df
 
-# NEWS dataset
-if os.path.exists(news_path):
+\if os.path.exists(news_path):
     df = pd.read_csv(news_path)
     if "latitude" not in df.columns and "location" in df.columns:
         df = add_coords(df, "location")
