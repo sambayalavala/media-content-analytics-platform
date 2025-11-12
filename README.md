@@ -123,9 +123,7 @@ Deploy the dashboard on Google Cloud Run or Streamlit Cloud.
 
 ### Author
 
-### Sambasivarao Yalavala
- B.Tech – CSE (AI), Dr. MGR Educational and Research Institute,
- 
- Data Engineering & Cloud Enthusiast,
- 
- GitHub: https://github.com/sambayalavala.
+Sambasivarao Yalavala
+B.Tech – CSE (AI), Dr. MGR Educational and Research Institute
+Data Engineering & Cloud Enthusiast | Revature Trainee
+GitHub: https://github.com/sambayalavala
